@@ -1,0 +1,74 @@
+[tool.poetry]
+name = "petico-api"
+version = "0.1.0"
+description = ""
+authors = ["Kyrylo Korablov <kyrylo.korablov@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+djangorestframework = "^3.14.0"
+django = "^4.2.5"
+poetry = "^1.6.1"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.9.1"
+coverage = {extras = ["toml"], version = "^7.3.1"}
+ruff = "^0.0.291"
+django-coverage-plugin = "^3.1.0"
+mypy = "^1.5.1"
+
+
+[tool.poetry.group.test.dependencies]
+pytest = "^7.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.coverage.run]
+plugins = [ "django_coverage_plugin" ]
+
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "class .*\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
+
+
+[tool.black]
+line-length = 119
+target-version = ['py311']
+include_trailing_comma = true
+exclude = '''
+(
+    \.eggs
+  | \.git
+  | \.tox
+  | build
+  | dist
+  | venv
+  | docs
+  | .idea
+)
+'''
+
+
+[tool.ruff]
+line-length = 119
+select = ["ALL"]
+
+
+[tool.mypy]
+no_implicit_optional = true
+warn_unused_ignores = true
+show_error_codes = true
